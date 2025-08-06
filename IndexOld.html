@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glow Secret Hair - Tienda de Shampoo Artesanal</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Pacifico -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fafafa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      z-index: 2000;
+      background: transparent;
+      transition: background 0.3s, padding 0.3s;
+      padding: 1.5rem 0;
+    }
+    .navbar.scrolled {
+      background: rgba(44, 62, 80, 0.95);
+      padding: 0.8rem 0;
+    }
+    .navbar-brand {
+      font-family: 'Yesteryear', cursive;
+      font-size: 2rem;
+      font-weight: normal;
+      letter-spacing: 1px;
+      color: #fff !important;
+    }
+    .navbar-toggler { border: none; }
+    .navbar-toggler-icon { filter: invert(1); }
+    .nav-link {
+      position: relative;
+      margin: 0 0.5rem;
+      padding: 0.25rem 0;
+      font-weight: 500;
+      color: #fff !important;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background: #e67e22;
+      transition: width 0.3s;
+    }
+    .nav-link:hover {
+      color: #e67e22 !important;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Banner portada */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 100vh;            /* ocupa toda la ventana */
+      overflow: hidden;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); /* capa oscura */
+      z-index: 1;
+    }
+    .banner__img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;        /* cubre sin deformar */
+      z-index: 0;
+    }
+    .banner__content {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 90%;
+      max-width: 900px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    /* Sección destacada tras el banner */
+.group--color .container {
+  background: #C6F710;
+  color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  max-width: 900px;
+  margin: -4rem auto 4rem; /* la sección “sube” un poco sobre el banner */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.main__title {
+  margin: 0.5rem 0 1rem;
+  font-size: 2rem;
+  font-family: 'Pacifico', cursive;
+  font-weight: 100;
+}
+
+.main__txt {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+
+    /* Resto de secciones */
+    section { padding: 4rem 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">Glow Secret Hair</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#company-info">Empresa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cart">Carrito</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner Portada -->
+  <section class="banner">
+    <img src="Images/Carrusel1.jpg" alt="Glow Secret Hair" class="banner__img">
+    <div class="banner__content">
+      DALE A TU VIDA EL GLOW Y LA SUAVIDAD QUE NECESITA
+    </div>
+  </section>
+
+  <!-- Sección “Glow Secret Hair” -->
+<section class="group group--color">
+  <div class="container">
+    <h2 class="main__title">GLOW SECRET HAIR</h2>
+    <p class="main__txt">
+      No solo es un nombre, sino una propuesta de bienestar capilar y a su vez un compromiso 
+      de ofrecer un producto artesanal auténtico y eficaz, que recuerde a cada consumidor que 
+      la belleza puede nacer de la naturaleza.
+    </p>
+  </div>
+</section>
+
+
+  <!-- Company Info -->
+  <section id="company-info" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold">Nuestra Empresa</h2>
+      <p class="lead text-center mx-auto" style="max-width: 800px;">
+        Somos una empresa orgullosamente Mexicana, ubicada en San Francisco de los Romo, Aguascalientes. Dedicada a la elaboración del shampoo artesanal. Creado a base de ingredientes como 
+        la sangre de grado y el Romero. Nacimos con la visión de ofrecer una alternativa natural y consciente para el cuidado capilar, alejándonos de los productos industriales cargados de 
+        químicos agresivos. Creemos que la belleza puede surgir de la naturaleza, promoviendo el amor propio, la salud capilar y el respeto.
+      </p>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="bg-light">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold">Nuestros Productos</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="Images/Product1.jpg" class="card-img-top" alt="Shampoo Nutritivo">
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold">Shampoo Nutritivo</h5>
+              <p class="card-text">Con Romero y sangre de grado para un cabello suave y brillante.</p>
+              <p class="fs-4 text-primary fw-bold">$300 MXN</p>
+              <button class="btn btn-success add-to-cart" data-name="Shampoo Nutritivo" data-price="300">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center mt-4 fst-italic">Próximamente: Crema capilar y Acondicionador.</p>
+    </div>
+  </section>
+
+  <!-- Cart -->
+  <section id="cart" class="bg-white"">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold">Carrito de Compras</h2>
+      <div class="card mx-auto shadow-sm" style="max-width: 600px;">
+        <div class="card-body">
+          <ul id="cart-items" class="list-group mb-3"></ul>
+          <div class="d-flex justify-content-between align-items-center">
+            <h5>Total: <span id="cart-total" class="text-success">$0</span> MXN</h5>
+            <button id="checkout" class="btn btn-primary" disabled>Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Navbar scroll script -->
+  <script>
+     // Cambia fondo de navbar al hacer scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const nav = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+      });
+    });
+  </script>
+  <!-- Custom JS: carrito -->
+  <script>
+    (() => {
+      const cart = [];
+      const itemsEl = document.getElementById('cart-items');
+      const totalEl = document.getElementById('cart-total');
+      const checkoutBtn = document.getElementById('checkout');
+
+      const renderCart = () => {
+        itemsEl.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, i) => {
+          total += item.price;
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.innerHTML = `
+            <span>${item.name}</span>
+            <div>
+              <span class="me-3">$${item.price}</span>
+              <button class="btn btn-danger btn-sm" data-index="${i}" aria-label="Eliminar">&times;</button>
+            </div>
+          `;
+          itemsEl.append(li);
+        });
+        totalEl.textContent = `$${total}`;
+        checkoutBtn.disabled = !cart.length;
+      };
+
+      document.body.addEventListener('click', e => {
+        if (e.target.matches('.add-to-cart')) {
+          const { name, price } = e.target.dataset;
+          cart.push({ name, price: +price });
+          renderCart();
+        }
+        if (e.target.matches('#cart-items .btn-danger')) {
+          cart.splice(e.target.dataset.index, 1);
+          renderCart();
+        }
+        if (e.target === checkoutBtn) {
+          alert(`¡Gracias por tu compra! Total: ${totalEl.textContent}`);
+          cart.length = 0;
+          renderCart();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

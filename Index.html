@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glow Secret Hair - Tienda de Shampoo Artesanal</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* === Reset básico === */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fafafa;
+      color: #333;
+    }
+
+    /* === Navbar === */
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      z-index: 2000;
+      background: transparent;
+      transition: background 0.3s, padding 0.3s;
+      padding: 1.5rem 0;
+    }
+    .navbar.scrolled {
+      background: rgba(71, 151, 124, 0.95);
+      padding: 0.8rem 0;
+    }
+    .navbar-brand {
+      font-family: 'Yesteryear', cursive;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      color: #fff !important;
+    }
+    .navbar-toggler { border: none; }
+    .navbar-toggler-icon { filter: invert(1); }
+    .nav-link {
+      position: relative;
+      margin: 0 0.5rem;
+      padding: 0.25rem 0;
+      font-weight: 500;
+      color: #fff !important;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background: #e67e22;
+      transition: width 0.3s;
+    }
+    .nav-link:hover {
+      color: #e67e22 !important;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* === Banner portada === */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    .banner__img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .banner__content {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 90%; max-width: 900px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    /* === Main wrapper: ancho uniforme y centrado === */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* === Sección destacada tras banner === */
+    .group--color {
+      padding-top: 4rem;
+      margin-bottom: 4rem;
+    }
+    .group--color .container {
+      background: rgba(71, 151, 124, 0.95);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .main__title {
+      margin: 0.5rem 0 1rem;
+      font-size: 2rem;
+      font-family: 'Pacifico', cursive;
+      font-weight: 100;
+    }
+    .main__txt {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* === Sección “Nuestra Empresa” con columnas === */
+    .main__about__description .container--flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .column--50 {
+      flex: 1 1 45%;
+      min-width: 300px;
+    }
+    .column--50 img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+    .column__title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .column__txt {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* === Otras secciones (productos, carrito…) === */
+    section {
+      padding: 4rem 0;
+    }
+
+    /* === Footer === */
+    /* Footer compacto en 3 columnas */
+    .main-footer {
+      background: rgba(71, 151, 124, 0.95);
+      color: #fff;
+      padding: 2rem 0 1rem;    /* menos padding superior e inferior */
+    }
+
+    .main-footer .container--flex {
+      display: flex;           /* activar flex */
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;             /* espacio entre columnas */
+      margin-bottom: 1rem;     /* espacio antes del texto de derechos */
+    }
+
+    .main-footer .column--33 {
+      flex: 0 1 30%;           /* ancho fijo ~30% cada columna */
+      min-width: 200px;        /* evita columnas demasiado estrechas */
+    }
+
+    .main-footer .column__title {
+      font-size: 1.2rem;       /* ligeramente más pequeño */
+      margin-bottom: 0.5rem;   /* menos espacio debajo del título */
+      color: #fff;
+    }
+
+    .main-footer .column__txt {
+      font-size: 0.9rem;       /* texto un poco más compacto */
+      line-height: 1.4;
+      margin-bottom: 0.5rem;   /* separa párrafos con menor espacio */
+    }
+
+    .main-footer a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .main-footer a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: #e67e22;
+      transition: width 0.3s;
+    }
+
+    .main-footer a:hover::after {
+      width: 100%;
+    }
+
+    .copy {
+      text-align: center;
+      font-size: 0.8rem;       /* más pequeño */
+      color: #bdc3c7;
+      margin: 0;
+      padding-top: 0.5rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Glow Secret Hair</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#company-info">Empresa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cart">Carrito</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner Portada -->
+  <section class="banner">
+    <img src="Images/Carrusel1.jpg" alt="Glow Secret Hair" class="banner__img">
+    <div class="banner__content">
+      DALE A TU VIDA EL GLOW Y LA SUAVIDAD QUE NECESITA
+    </div>
+  </section>
+
+  <!-- Contenedor principal -->
+  <main class="main">
+
+    <!-- Sección destacada -->
+    <section class="group group--color">
+      <div class="container">
+        <h2 class="main__title">GLOW SECRET HAIR</h2>
+        <p class="main__txt">
+          No solo es un nombre, sino una propuesta de bienestar capilar y a su vez un compromiso
+          de ofrecer un producto artesanal auténtico y eficaz, que recuerde a cada consumidor que
+          la belleza puede nacer de la naturaleza.
+        </p>
+      </div>
+    </section>
+
+    <!-- Nuestra Empresa (dos columnas) -->
+    <section id="company-info" class="main__about__description">
+      <div class="container container--flex">
+        <div class="column column--50">
+          <img src="Images/Carrusel2.jpg" alt="Nuestra Empresa">
+        </div>
+        <div class="column column--50">
+          <h3 class="column__title">Nuestra Empresa</h3>
+          <p class="column__txt">
+            Somos una empresa orgullosamente Mexicana. Ubicada en San Francisco de los Romo, Aguascalientes. Dedicada a la elaboración del shampoo artesanal. Creado a base de ingredientes como 
+            la sangre de grado y el Romero. Nacimos con la visión de ofrecer una alternativa natural y consciente para el cuidado capilar, alejándonos de los productos industriales cargados de 
+            químicos agresivos. Creemos que la belleza puede surgir de la naturaleza, promoviendo el amor propio, la salud capilar y el respeto.
+          </p>
+
+          <p class="column__txt">
+           Nuestro producto principal es el shampoo que se encarga de mantener el cabello limpio y saludable. Fortaleciendo las hebras para prevenir la pérdida y la resequedad 
+           Cuenta con una mezcla de aceites esenciales, teniendo como ingrediente principal el extracto de la sangre de grado y el Romero. Los cuales ayudan a regular el exceso de grasa en
+            el cuero cabelludo. Dejándolo suave, brillante, dándole una reparación y nutrición profunda.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Productos -->
+    <section id="products" class="bg-light">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold">Nuestros Productos</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="Images/Product1.jpg" class="card-img-top" alt="Shampoo Nutritivo">
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold">Shampoo Nutritivo</h5>
+              <p class="card-text">Con Romero y sangre de grado para un cabello suave y brillante.</p>
+              <p class="fs-4 text-primary fw-bold">$300 MXN</p>
+              <button class="btn btn-success add-to-cart" data-name="Shampoo Nutritivo" data-price="300">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center mt-4 fst-italic">Próximamente: Crema capilar y Acondicionador.</p>
+    </div>
+  </section>
+
+    <!-- Carrito -->
+  <section id="cart" class="bg-white">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold">Carrito de Compras</h2>
+      <div class="card mx-auto shadow-sm" style="max-width: 600px;">
+        <div class="card-body">
+          <ul id="cart-items" class="list-group mb-3"></ul>
+          <div class="d-flex justify-content-between align-items-center">
+            <h5>Total: <span id="cart-total" class="text-success">$0</span> MXN</h5>
+            <button id="checkout" class="btn btn-primary" disabled>Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container container--flex">
+      <div class="column column--33">
+        <h2 class="column__title">¿Por qué visitarnos?</h2>
+        <p class="column__txt">
+          Porque en Glow Secret Hair cuidamos tu belleza desde la raíz, 
+          con productos artesanales y naturales que transforman tu rutina.
+        </p>
+      </div>
+      <div class="column column--33">
+        <h2 class="column__title">Contáctanos</h2>
+        <p class="column__txt"><a href="https://maps.app.goo.gl/tzrux5vZnRMNTmzB6">Dirección: Venezuela #300, San Francisco de los Romo Ags. México </a></p>
+        <p class="column__txt">Teléfono: 449-980-89-46</p>
+        <p class="column__txt">Correo: itzelalheliramirezmartinez68@gmail.com</p>
+      </div>
+      <div class="column column--33">
+        <h2 class="column__title">Síguenos</h2>
+        <p class="column__txt"><a href="https://www.facebook.com/share/1J7oJ26vCq/?mibextid=wwXIfr" class="icon-facebook">Facebook</a></p>
+        <p class="column__txt"><a href="https://www.instagram.com/alheli_ch?igsh=dTBvMDlmM3o2Y256" class="icon-instagram">Instagram</a></p>
+      </div>
+    </div>
+    <p class="copy">© 2025 Glow Secret Hair | Todos los derechos reservados</p>
+</footer>
+
+
+ <script>
+   
+    document.addEventListener('DOMContentLoaded', () => {
+      const nav = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+      });
+    });
+  </script>
+  <!-- Custom JS: carrito -->
+  <script>
+    (() => {
+      const cart = [];
+      const itemsEl = document.getElementById('cart-items');
+      const totalEl = document.getElementById('cart-total');
+      const checkoutBtn = document.getElementById('checkout');
+
+      const renderCart = () => {
+        itemsEl.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, i) => {
+          total += item.price;
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.innerHTML = `
+            <span>${item.name}</span>
+            <div>
+              <span class="me-3">$${item.price}</span>
+              <button class="btn btn-danger btn-sm" data-index="${i}" aria-label="Eliminar">&times;</button>
+            </div>
+          `;
+          itemsEl.append(li);
+        });
+        totalEl.textContent = `$${total}`;
+        checkoutBtn.disabled = !cart.length;
+      };
+
+      document.body.addEventListener('click', e => {
+        if (e.target.matches('.add-to-cart')) {
+          const { name, price } = e.target.dataset;
+          cart.push({ name, price: +price });
+          renderCart();
+        }
+        if (e.target.matches('#cart-items .btn-danger')) {
+          cart.splice(e.target.dataset.index, 1);
+          renderCart();
+        }
+        if (e.target === checkoutBtn) {
+          alert(`¡Gracias por tu compra! Total: ${totalEl.textContent}`);
+          cart.length = 0;
+          renderCart();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
